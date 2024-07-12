@@ -1,7 +1,5 @@
 "use client";
-import Image from 'next/image'
 import React from 'react'
-import { blob } from '@/public/images'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -10,19 +8,29 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  SelectGroup,
+  SelectLabel,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
+import SideBlob from '@/components/ui/sideblob';
 
 
 
 const loginFormSchema = z.object({
   email: z.string().email(),
   password: z.string().min(4, "Password minimum 8 characters"),
+  role: z.string().optional(),
 })
 
 type LoginFormSchema = z.infer<typeof loginFormSchema>
@@ -32,35 +40,41 @@ export default function SignIn() {
     resolver: zodResolver(loginFormSchema),
   });
 
+  const { control, handleSubmit } = form;
 
   const onSubmit = (data: LoginFormSchema) => {
     console.log(data);
   };
   return (
     <main className="flex min-h-screen flex-row items-center">
-      <section className='w-1/2 hidden sm:block relative'>
-        <div className='relative'>
-          <Image src={blob} className="w-full h-screen" objectFit="cover" alt="blob" width={810} height={500} />
-        </div>
-        <div className='w-full absolute top-0 left-0 h-screen flex flex-col justify-center px-14'>
-          <p className='w-fit font-bold text-6xl text-white'>OrgControl</p>
-          <p className='w-[500px] font-medium text-xl mt-5 text-white'>Our vision is to provide convenience and help increase your sales business.</p>
-        </div>
-      </section>
-      <section className='w-1/2 h-screen flex justify-center items-center'>
-        <div className='w-[460px]'>
-          <p className='text-3xl font-semibold'>Sign In</p>
-          <p className='text-base font-normal mt-5'>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.</p>
+      <SideBlob />
+      <section className='w-full sm:w-2/5 h-screen flex justify-center items-center px-[15px] sm:px-16'>
+        <div className='w-full sm:min-w-[300px]'>
+          <p className='text-[25px] sm:text-3xl font-semibold'>Sign In</p>
+          <p className='text-sm sm:text-base font-normal mt-5'>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.</p>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-10">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-10">
               <FormField
-                control={form.control}
+                control={control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className='text-sm sm:text-base'>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Email" {...field} />
+                      <Input placeholder="Email" className='text-sm sm:text-base' {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className='text-sm sm:text-base'>Password</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="Password" className='text-sm sm:text-base' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -68,18 +82,27 @@ export default function SignIn() {
               />
               <FormField
                 control={form.control}
-                name="password"
+                name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="Password" {...field} />
-                    </FormControl>
+                    <FormLabel className='text-sm sm:text-base'>Role</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger className='text-sm sm:text-base text-gray-600'>
+                          <SelectValue placeholder="Select a Role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem className='text-sm sm:text-base' value="m@example.com">m@example.com</SelectItem>
+                        <SelectItem className='text-sm sm:text-base' value="m@google.com">m@google.com</SelectItem>
+                        <SelectItem className='text-sm sm:text-base' value="m@support.com">m@support.com</SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button variant='outline' type="submit" className='w-full bg-[#FE853A] text-white font-semibold text-sm sm:text-base'>Submit</Button>
             </form>
           </Form>
         </div>
