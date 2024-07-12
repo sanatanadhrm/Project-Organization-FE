@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react"
+import { Plus, EyeIcon, EyeOffIcon } from "lucide-react"
 
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
@@ -9,5 +9,7 @@ export {
   Badge,
 
   // Icons
-  Plus
+  Plus,
+  EyeIcon,
+  EyeOffIcon,
 }
