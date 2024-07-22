@@ -5,7 +5,7 @@ import { blob } from '@/public/images'
 
 export default function SideBlob() {
   return (
-    <section className='w-3/5 hidden sm:block relative'>
+    <section className='w-3/5 hidden lg:block relative'>
       <div className='relative w-full h-screen'>
         <Image
           src={blob}

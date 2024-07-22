@@ -50,10 +50,10 @@ export default function SignUp() {
     console.log(data);
   };
   return (
-    <main className="flex min-h-screen flex-row items-center">
+    <main className="flex min-h-screen flex-row md:justify-center items-center">
       <SideBlob />
-      <section className='w-full sm:w-2/5 h-screen flex justify-center items-center px-[15px] sm:px-16'>
-        <div className='w-full sm:min-w-[300px]'>
+      <section className='w-full sm:w-3/4 lg:w-2/5 h-screen flex justify-center items-center px-[15px] sm:px-16'>
+        <div className='w-full sm:min-w-[350px]'>
           <p className='text-3xl font-semibold'>Sign Up</p>
           <p className='text-base font-normal mt-2'>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.</p>
           <Form {...form}>

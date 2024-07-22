@@ -38,6 +38,7 @@ import { Badge, Button, CalendarDays, Filter } from '@/components/constants';
 import Image from 'next/image';
 import { Instagram, Mail } from 'lucide-react';
 import Link from 'next/link';
+import Navbar from '@/components/ui/navbar';
 
 const searchSchema = z.object({
   query: z.string().min(1, "Search query is required"),
@@ -80,7 +81,8 @@ export default function Homepage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center px-[15px]">
-      <section className='w-full flex flex-row justify-center gap-3 py-2'>
+      <Navbar />
+      <section className='w-full lg:w-1/2 flex flex-row justify-center gap-3 py-2 mt-28 sm:mt-36'>
         <Form {...form}>
           <form className="flex items-center space-x-2 w-full">
             <FormField
@@ -117,7 +119,7 @@ export default function Homepage() {
           </DropdownMenuContent>
         </DropdownMenu>
       </section>
-      <section className='mt-2 w-full'>
+      <section className='mt-2 w-full sm:grid sm:grid-cols-2 gap-3 lg:grid-cols-3 lg:p-16'>
         <Card>
           <CardHeader className='flex-row'>
             <Avatar>
@@ -151,8 +153,108 @@ export default function Homepage() {
             </Link>
           </CardFooter>
         </Card>
-
+        <Card>
+          <CardHeader className='flex-row'>
+            <Avatar>
+              <AvatarImage
+                className='w-16 h-auto object-cover'
+                src="https://github.com/shadcn.png" alt="@shadcn"
+                width={40}
+                height={40}
+              />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <div className='flex flex-col ml-4 space-y-1'>
+              <CardTitle className='text-sm font-semibold'>Organization Name</CardTitle>
+              <CardDescription className='border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-full bg-gray-200 text-gray-500 font-medium text-xs py-1 px-3 text-center'>
+                Category
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className='ml-20 flex flex-row items-center gap-2'>
+              <CalendarDays className='w-4 h-4 text-gray-500' />
+              <p className='text-xs text-gray-500'>Joined 1 day ago</p>
+            </div>
+          </CardContent>
+          <CardFooter className='flex justify-end items-center'>
+            <Link href='#' className='rounded-full hover:bg-secondary/80 p-1.5'>
+              <Instagram className='w-6 h-6 text-gray-500' />
+            </Link>
+            <Link href='#' className='rounded-full hover:bg-secondary/80 p-1.5'>
+              <Mail className='w-6 h-6 text-gray-500' />
+            </Link>
+          </CardFooter>
+        </Card>
+        <Card>
+          <CardHeader className='flex-row'>
+            <Avatar>
+              <AvatarImage
+                className='w-16 h-auto object-cover'
+                src="https://github.com/shadcn.png" alt="@shadcn"
+                width={40}
+                height={40}
+              />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <div className='flex flex-col ml-4 space-y-1'>
+              <CardTitle className='text-sm font-semibold'>Organization Name</CardTitle>
+              <CardDescription className='border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-full bg-gray-200 text-gray-500 font-medium text-xs py-1 px-3 text-center'>
+                Category
+              </CardDescription>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className='ml-20 flex flex-row items-center gap-2'>
+              <CalendarDays className='w-4 h-4 text-gray-500' />
+              <p className='text-xs text-gray-500'>Joined 1 day ago</p>
+            </div>
+          </CardContent>
+          <CardFooter className='flex justify-end items-center'>
+            <Link href='#' className='rounded-full hover:bg-secondary/80 p-1.5'>
+              <Instagram className='w-6 h-6 text-gray-500' />
+            </Link>
+            <Link href='#' className='rounded-full hover:bg-secondary/80 p-1.5'>
+              <Mail className='w-6 h-6 text-gray-500' />
+            </Link>
+          </CardFooter>
+        </Card>
       </section>
+      {/* Footer */}
+      <footer className='mt-16 py-10'>
+        <div className='w-3/5'>
+          <p className='text-[#FE853A] text-2xl font-bold'>OrgControl</p>
+          <p className='mt-4 text-sm font-medium text-[#90A3BF]'>Our vision is to provide convenience and help increase your sales business.</p>
+        </div>
+        <div className='grid grid-cols-2 gap-3 mt-14'>
+          <div className='flex flex-col gap-2'>
+            <p className='font-semibold text-xl text-[#1A202C]'>About</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>How it works</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Featured</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Partnership</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Bussiness Relation</p>
+          </div>
+          <div className='flex flex-col gap-2'>
+            <p className='font-semibold text-xl text-[#1A202C]'>Socials</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Discord</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Instagram</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Twitter</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Facebook</p>
+          </div>
+          <div className='flex flex-col gap-2 mt-10'>
+            <p className='font-semibold text-xl text-[#1A202C]'>Community</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Events</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Blog</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Podcast</p>
+            <p className='font-medium text-sm text-[#90A3BF]'>Invite a Friend</p>
+          </div>
+        </div>
+        <div className='grid grid-cols-2 gap-3 mt-10 text-[#1A202C]'>
+          <p className='font-semibold text-sm'>Privacy & Policy</p>
+          <p className='font-semibold text-sm'>Terms & Condition</p>
+        </div>
+        <p className='font-semibold text-sm text-[#1A202C] mt-7'>&copy;2022 OrgControl. All rights reserved</p>
+      </footer>
     </main >
   );
 }
