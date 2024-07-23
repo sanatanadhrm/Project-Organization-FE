@@ -13,12 +13,26 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import SideBlob from '@/components/ui/sideblob';
+import Link from 'next/link';
 
 const registerFormSchema = z.object({
+  organizationName: z.string(),
   email: z.string().email(),
+  category: z.string().min(1, "Category is required"),
   password: z.string().min(4, "Password minimum 8 characters"),
+  confirmPassword: z.string().min(4, "Password minimum 8 characters"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
 })
 
 type RegisterFormSchema = z.infer<typeof registerFormSchema>
@@ -35,41 +49,92 @@ export default function SignUp() {
     console.log(data);
   };
   return (
-    <main className="flex min-h-screen flex-row items-center">
+    <main className="flex min-h-screen flex-row md:justify-center items-center">
       <SideBlob />
-      <section className='w-full sm:w-2/5 h-screen flex justify-center items-center px-[15px] sm:px-16'>
-        <div className='w-full sm:min-w-[300px]'>
+      <section className='w-full sm:w-3/4 lg:w-2/5 h-screen flex justify-center items-center px-[15px] sm:px-16'>
+        <div className='w-full sm:min-w-[350px]'>
           <p className='text-3xl font-semibold'>Sign Up</p>
-          <p className='text-base font-normal mt-5'>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.</p>
+          <p className='text-base font-normal mt-2'>The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.</p>
           <Form {...form}>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 mt-10">
-              <FormField
-                control={control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="Password" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button variant='outline' type="submit" className='w-full bg-[#FE853A] text-white'>Submit</Button>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="space-y-1.5 mt-10">
+                <FormField
+                  control={control}
+                  name="organizationName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className='text-sm sm:text-base'>Organization Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Organization Name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className='text-sm sm:text-base'>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className='text-sm sm:text-base'>Category</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className='text-sm sm:text-base text-gray-600'>
+                            <SelectValue placeholder="Select a Category" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem className='text-sm sm:text-base' value="m@example.com">m@example.com</SelectItem>
+                          <SelectItem className='text-sm sm:text-base' value="m@google.com">m@google.com</SelectItem>
+                          <SelectItem className='text-sm sm:text-base' value="m@support.com">m@support.com</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className='text-sm sm:text-base'>Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" placeholder="Password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className='text-sm sm:text-base'>Confirm Password</FormLabel>
+                      <FormControl>
+                        <Input type="password" placeholder="Confirm Password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <Button variant='outline' type="submit" className='w-full bg-[#FE853A] text-white mt-7'>Sign Up</Button>
+              <p className='text-center mt-3 text-sm sm:text-base font-normal'>Already have an Account? <Link href="/signin" className='font-medium underline'>Sign In</Link></p>
             </form>
           </Form>
         </div>

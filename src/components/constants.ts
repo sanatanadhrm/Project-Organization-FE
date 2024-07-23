@@ -1,4 +1,4 @@
-import { Plus, EyeIcon, EyeOffIcon } from "lucide-react"
+import { Plus, EyeIcon, EyeOffIcon, Search, Filter, CalendarDays, Instagram, Mail } from "lucide-react"
 
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
@@ -12,4 +12,7 @@ export {
   Plus,
   EyeIcon,
   EyeOffIcon,
+  Search,
+  Filter,
+  CalendarDays,
 }

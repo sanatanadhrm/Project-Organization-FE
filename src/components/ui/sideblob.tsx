@@ -5,14 +5,13 @@ import { blob } from '@/public/images'
 
 export default function SideBlob() {
   return (
-    <section className='w-3/5 hidden sm:block relative'>
+    <section className='w-3/5 hidden lg:block relative'>
       <div className='relative w-full h-screen'>
         <Image
           src={blob}
-          layout="fill"
-          objectFit="cover"
           alt="blob"
-          className="absolute top-0 left-0"
+          className="absolute top-0 left-0 object-cover"
+          fill
         />
       </div>
       <div className='w-full absolute top-0 left-0 h-screen flex flex-col justify-center px-14'>
