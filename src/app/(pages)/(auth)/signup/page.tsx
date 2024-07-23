@@ -19,11 +19,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectGroup,
-  SelectLabel,
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import SideBlob from '@/components/ui/sideblob';
+import Link from 'next/link';
 
 const registerFormSchema = z.object({
   organizationName: z.string(),
@@ -64,7 +63,7 @@ export default function SignUp() {
                   name="organizationName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Organization Name</FormLabel>
+                      <FormLabel className='text-sm sm:text-base'>Organization Name</FormLabel>
                       <FormControl>
                         <Input placeholder="Organization Name" {...field} />
                       </FormControl>
@@ -77,7 +76,7 @@ export default function SignUp() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className='text-sm sm:text-base'>Email</FormLabel>
                       <FormControl>
                         <Input placeholder="Email" {...field} />
                       </FormControl>
@@ -112,7 +111,7 @@ export default function SignUp() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className='text-sm sm:text-base'>Password</FormLabel>
                       <FormControl>
                         <Input type="password" placeholder="Password" {...field} />
                       </FormControl>
@@ -125,7 +124,7 @@ export default function SignUp() {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Confirm Password</FormLabel>
+                      <FormLabel className='text-sm sm:text-base'>Confirm Password</FormLabel>
                       <FormControl>
                         <Input type="password" placeholder="Confirm Password" {...field} />
                       </FormControl>
@@ -135,6 +134,7 @@ export default function SignUp() {
                 />
               </div>
               <Button variant='outline' type="submit" className='w-full bg-[#FE853A] text-white mt-7'>Sign Up</Button>
+              <p className='text-center mt-3 text-sm sm:text-base font-normal'>Already have an Account? <Link href="/signin" className='font-medium underline'>Sign In</Link></p>
             </form>
           </Form>
         </div>

@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import SideBlob from '@/components/ui/sideblob';
+import Link from 'next/link';
 
 
 
@@ -105,6 +106,7 @@ export default function SignIn() {
                 />
               </div>
               <Button variant='outline' type="submit" className='w-full bg-[#FE853A] text-white font-semibold text-sm sm:text-base mt-7'>Sign In</Button>
+              <p className='text-center mt-3 text-sm sm:text-base font-normal'>Don&apos;t have an Account? <Link href="/signup" className='font-medium underline'>Sign Up</Link></p>
             </form>
           </Form>
         </div>
