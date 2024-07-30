@@ -1,5 +1,4 @@
-import { Badge, Button } from "@/components/constants";
-import Navbar from "@/components/ui/navbar";
+import { Badge, Button, Navbar } from "@/components/constants";
 import Image from "next/image";
 import { orangeThreeLine, sectionImageDesktop, sectionImageMobile } from "@/public/images";
 import Link from "next/link";
